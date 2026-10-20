@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MoneyBank — Closure Banking Dashboard</title>
+<style>
+:root{font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:#172c47;background:#f3f7fc;--blue:#265ee8;--teal:#0d9e9b}*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid #a3c5ff;outline-offset:2px}.nav{background:#fff;border-bottom:1px solid #dfe7f2}.navin{max-width:1100px;margin:auto;padding:19px 20px;display:flex;justify-content:space-between;align-items:center}.brand{font-size:24px;font-weight:850;letter-spacing:-1px}.brand span{color:var(--blue)}.navsmall{font-size:12px;color:#697d96}.hero{max-width:1100px;margin:auto;padding:35px 20px 24px}.eyebrow{font-size:11px;font-weight:850;letter-spacing:1.6px;text-transform:uppercase;color:#2565ae}.hero h1{font-size:clamp(29px,4.8vw,43px);margin:8px 0;letter-spacing:-1.5px}.hero p{color:#657993;font-size:14px;line-height:1.6;max-width:670px}.grid{max-width:1100px;margin:auto;padding:0 20px 45px;display:grid;grid-template-columns:1fr .93fr;gap:20px}.card{background:white;border:1px solid #dfE7f2;border-radius:20px;padding:24px;box-shadow:0 15px 38px #18385d0d;min-width:0}.balance{background:linear-gradient(115deg,#152c71,#2965e8 60%,#42bcd6);border-radius:18px;color:white;padding:29px;position:relative;overflow:hidden}.balance:after{content:"";position:absolute;width:210px;height:210px;border:1px solid #ffffff30;border-radius:50%;right:-65px;top:-110px;box-shadow:-40px 35px 0 6px #ffffff0c,-95px 95px 0 -19px #ffffff10}.balance small{color:#d5e6ff;font-size:12px;position:relative;z-index:1}.balance strong{display:block;font-size:clamp(31px,5vw,44px);letter-spacing:-1.4px;margin:14px 0 7px;position:relative;z-index:1}.balance .tag{font-size:11px;border:1px solid #ffffff50;background:#ffffff15;border-radius:50px;display:inline-block;padding:7px 12px;position:relative;z-index:1}.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0 0}.stat{background:#f3f8ff;border:1px solid #e4eef9;border-radius:13px;padding:16px}.stat small{color:#718199}.stat strong{display:block;font-size:19px;margin-top:8px;overflow-wrap:anywhere}.sectiontitle{font-size:18px;letter-spacing:-.3px;margin:0 0 7px}.muted{font-size:13px;color:#697d95;line-height:1.6;margin:0 0 21px}.fields{display:grid;gap:17px}label{display:block;font-size:13px;font-weight:750;margin-bottom:7px}input{width:100%;border:1px solid #ccd9eb;border-radius:12px;padding:12px 13px;height:49px;background:#fcfdff;color:#203750}input:focus{outline:none;border-color:#538cf2;box-shadow:0 0 0 4px #eaf2ff}.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:19px}.btn{padding:13px;border:0;border-radius:12px;font-weight:800;color:#fff;background:var(--blue)}.btn.withdraw{background:#173b66}.btn:disabled{opacity:.5;cursor:not-allowed}.message{font-size:13px;min-height:24px;margin-top:14px;color:#17765b;line-height:1.5}.message.error{color:#b43d4c}.minor{font-size:12px;color:#74849a}.headingrow{display:flex;align-items:center;justify-content:space-between;gap:8px}.badge{padding:6px 10px;color:#245d9f;background:#edf5ff;border-radius:50px;font-size:11px;font-weight:800}.history{display:grid;gap:10px;margin-top:19px;max-height:366px;overflow:auto}.entry{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#f8fbff;border:1px solid #e8eff9;border-radius:13px;padding:14px}.entry strong{font-size:13px}.entry small{display:block;color:#7b8da2;margin-top:4px;font-size:11px}.entry .amt{font-size:14px;font-weight:850;white-space:nowrap}.plus{color:#0c8c69}.minus{color:#c2485a}.empty{padding:25px 10px;text-align:center;color:#7387a0;font-size:13px}.limit{margin-top:17px;padding:14px;border-radius:12px;background:#f4f6ff;border:1px solid #e3e9fc;font-size:12px;line-height:1.7;color:#526784}.footer{font-size:12px;color:#8797ab;text-align:center;padding:0 15px 25px}@media(max-width:780px){.grid{grid-template-columns:1fr}.hero{padding-top:27px}}@media(max-width:380px){.stats,.actions{grid-template-columns:1fr}.card{padding:17px}.navsmall{display:none}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="navin"><div class="brand">money<span>bank.</span></div><div class="navsmall">Personal banking simulator</div></div></header>
+<section class="hero"><div class="eyebrow">Your finance workspace</div><h1>Banking, made simple.</h1><p>Manage a demo account with secure-in-memory balance handling, quick transactions and built-in action rate limiting.</p></section>
+<main class="grid">
+<section>
+<div class="card"><div class="balance"><small>Available balance</small><strong id="balance">₹25,000.00</strong><span class="tag">Demo checking account</span></div><div class="stats"><div class="stat"><small>Total deposited</small><strong id="deposits">₹0.00</strong></div><div class="stat"><small>Total withdrawn</small><strong id="withdrawals">₹0.00</strong></div></div></div>
+<div class="card" style="margin-top:20px"><h2 class="sectiontitle">Make a transaction</h2><p class="muted">Enter an amount and choose an action. Your balance updates after a successful transaction.</p><div class="fields"><div><label for="amount">Amount (INR)</label><input id="amount" type="number" step="0.01" min="0.01" placeholder="Enter amount, e.g. 500" inputmode="decimal"></div></div><div class="actions"><button class="btn" id="deposit" type="button">Deposit Money</button><button class="btn withdraw" id="withdraw" type="button">Withdraw Money</button></div><div class="message" id="message" role="status" aria-live="polite">Ready for your first transaction.</div><p class="minor">Demo only. No real money or bank account is connected.</p></div>
+</section>
+<aside class="card"><div class="headingrow"><h2 class="sectiontitle" style="margin:0">Recent activity</h2><span class="badge" id="count">0 entries</span></div><p class="muted" style="margin-top:9px">A clear record of every successful transaction in this session.</p><div id="history" class="history"><div class="empty">No transactions yet. Make a deposit or withdrawal to get started.</div></div><div class="limit"><strong>Transaction protection</strong><br>To demonstrate function closures and rate limiting, only 3 transaction attempts are allowed in each rolling 10-second window. <span id="remaining">3</span> attempts currently available. This is a demo restriction, not banking security.</div><button class="btn" id="reset" style="margin-top:20px;background:#eaf2ff;color:#245baa;width:100%" type="button">Reset Demo Account</button></aside>
+</main><footer>MoneyBank Studio · Educational JavaScript Banking Project</footer>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const format=n=>new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',minimumFractionDigits:2,maximumFractionDigits:2}).format(n);
+// Closure: balance cannot be modified directly from outside this module.
+function createBankAccount(initialBalancePaise){
+  let balancePaise=initialBalancePaise;
+  let depositedPaise=0;
+  let withdrawnPaise=0;
+  let transactions=[];
+  function transact(type,amountPaise){
+    if(!Number.isSafeInteger(amountPaise)||amountPaise<=0) return {ok:false,error:'Enter a valid amount greater than zero.'};
+    if(type==='withdraw'&&amountPaise>balancePaise)return {ok:false,error:'Insufficient balance for this withdrawal.'};
+    if(type==='deposit'&&!Number.isSafeInteger(balancePaise+amountPaise))return {ok:false,error:'This amount is too large.'};
+    if(type==='deposit'){balancePaise+=amountPaise;depositedPaise+=amountPaise;}
+    else if(type==='withdraw'){balancePaise-=amountPaise;withdrawnPaise+=amountPaise;}
+    else return {ok:false,error:'Invalid transaction type.'};
+    transactions.unshift({type,amountPaise,at:new Date()});
+    return {ok:true};
+  }
+  return {
+    deposit:amount=>transact('deposit',amount),
+    withdraw:amount=>transact('withdraw',amount),
+    snapshot:()=>({balancePaise,depositedPaise,withdrawnPaise,transactions:transactions.map(x=>({...x}))})
+  };
+}
+// Closure: timestamps remain private, protecting the transaction function from rapid repeated calls.
+function createRateLimiter(maxCalls=3,windowMs=10000){
+  let timestamps=[];
+  return {
+    check(){const now=Date.now();timestamps=timestamps.filter(t=>now-t<windowMs);if(timestamps.length>=maxCalls)return {allowed:false,wait:Math.ceil((windowMs-(now-timestamps[0]))/1000),remaining:0};timestamps.push(now);return {allowed:true,remaining:maxCalls-timestamps.length};},
+    remaining(){const now=Date.now();timestamps=timestamps.filter(t=>now-t<windowMs);return maxCalls-timestamps.length;}
+  };
+}
+let account=createBankAccount(2500000);
+let limiter=createRateLimiter();
+function say(message,error=false){$('message').textContent=message;$('message').classList.toggle('error',error);}
+function render(){const d=account.snapshot();$('balance').textContent=format(d.balancePaise/100);$('deposits').textContent=format(d.depositedPaise/100);$('withdrawals').textContent=format(d.withdrawnPaise/100);$('count').textContent=`${d.transactions.length} ${d.transactions.length===1?'entry':'entries'}`;$('remaining').textContent=limiter.remaining();const list=$('history');list.replaceChildren();if(!d.transactions.length){const e=document.createElement('div');e.className='empty';e.textContent='No transactions yet. Make a deposit or withdrawal to get started.';list.append(e);return;}for(const t of d.transactions){const row=document.createElement('div');row.className='entry';const left=document.createElement('div');const title=document.createElement('strong');title.textContent=t.type==='deposit'?'Money deposited':'Money withdrawn';const time=document.createElement('small');time.textContent=t.at.toLocaleString('en-IN');left.append(title,time);const amt=document.createElement('span');amt.className='amt '+(t.type==='deposit'?'plus':'minus');amt.textContent=(t.type==='deposit'?'+':'−')+format(t.amountPaise/100);row.append(left,amt);list.append(row);}}
+function handleTransaction(type){const raw=$('amount').value.trim();const amount=Number(raw);if(!raw||!Number.isFinite(amount)||amount<=0||Math.round(amount*100)!==amount*100||!Number.isSafeInteger(Math.round(amount*100))){say('Enter a valid amount in rupees, with up to 2 decimal places.',true);return;}const gate=limiter.check();if(!gate.allowed){say(`Too many attempts. Please wait about ${gate.wait} seconds before trying again.`,true);render();return;}const result=type==='deposit'?account.deposit(Math.round(amount*100)):account.withdraw(Math.round(amount*100));if(result.ok){say(`${type==='deposit'?'Deposit':'Withdrawal'} successful.`);$('amount').value='';}else say(result.error,true);render();}
+$('deposit').addEventListener('click',()=>handleTransaction('deposit'));
+$('withdraw').addEventListener('click',()=>handleTransaction('withdraw'));
+$('reset').addEventListener('click',()=>{account=createBankAccount(2500000);limiter=createRateLimiter();$('amount').value='';say('Demo account restored to its starting balance.');render();});
+render();
+</script>
+</body></html>
